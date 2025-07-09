@@ -1696,46 +1696,105 @@ textarea.form-control {
 
 
 
+    aboutnew {
+      background-color: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem;
+      margin: 0;
+      font-family: sans-serif;
+    }
 
-       .fade-in-left,
-       .fade-in-right {
-         opacity: 0;
-         transition: opacity 0.6s ease, transform 0.6s ease;
-       }
+    .about-container {
+      width: 100%;
+      max-width: 1280px;
+    }
 
-       .fade-in-left {
-         transform: translateX(-50px);
-       }
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 3rem;
+    }
 
-       .fade-in-right {
-         transform: translateX(50px);
-       }
+    h2 span {
+      color: #3b82f6;
+    }
 
-       .in-view {
-         opacity: 1 !important;
-         transform: translateX(0) !important;
-       }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      justify-items: center;
+    }
 
-       .skill-card {
-         background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-       }
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
-       .in-view .skill-card:hover {
-         transform: translateY(-10px);
-         background: rgba(255, 255, 255, 0.1);
-       }
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
 
-       .skill-icon {
-         font-size: 2rem;
-         color: #3b82f6;
-       }
+    .skill-card,.skill-card-down {
+      width: 160px;
+      height: 160px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+      transition:  0.003s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
 
-       .label {
-         color: white;
-         font-weight: 500;
-         margin-top: 0.5rem;
+
+
+
+    }
+
+    .skill-card:hover {
+      transform: translateY(-15px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .skill-card-down:hover {
+          transform: translateY(15px);
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      color: #3b82f6;
+    }
+
+    .label {
+      margin-top: 0.75rem;
+      font-weight: 500;
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-100px);
+      transition:  1s ease;
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(100px);
+      transition: 1s ease;
+    }
+
+    .in-view {
+      opacity: 1 !important;
+      transform: translateX(0) ;
+    }

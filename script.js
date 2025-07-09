@@ -152,15 +152,15 @@ function toggleProjectDetail(id, btn) {
 
 
 //skill section
-// const observer = new IntersectionObserver((entries) => {
-//       entries.forEach((entry) => {
-//         if (entry.isIntersecting) {
-//           entry.target.classList.add('in-view');
-//         }
-//       });
-//     }, {
-//       threshold: 0.1
-//     });
+const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
 
-//     document.querySelectorAll('.fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in-left, .fade-in-right').forEach(el => observer.observe(el));
 

@@ -1493,13 +1493,16 @@ textarea.form-control {
       margin-bottom: 40px;
     }
 
-    .project-grid {
+  .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
+      gap: 10rem;
+      justify:center;
     }
 
     .project-card1 {
+
+
       background: rgba(225,225,225,0.05);
       border-radius: 12px;
       overflow: hidden;
@@ -1516,12 +1519,12 @@ textarea.form-control {
 
     .project-img {
       width: 100%;
-      height: 160px;
+      height: 260px;
       object-fit: cover;
     }
 
     .project-content1 {
-      padding: 20px;
+      padding: 40px;
       flex: 1;
     }
 
@@ -1543,8 +1546,10 @@ textarea.form-control {
 
     .project-buttons {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      justify-content:space-between;
+      align-item:center;
+      width:100%;
+
     }
 
     .toggle-btn {

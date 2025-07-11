@@ -20,6 +20,10 @@ window.addEventListener('load', () => {
       document.querySelector('.loader-wrapper').style.opacity = '0';
       setTimeout(() => {
           document.querySelector('.loader-wrapper').style.display = 'none';
+
+             // Your observer logic goes *here* after loader hides everything
+                setupObserver();
+        
       }, 500);
   }, 2000);
 });
@@ -111,28 +115,63 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 //project section
 
-function toggleProjectDetail(id, btn) {
-  const detail = document.getElementById(id);
-  const isOpen = detail.classList.contains('show');
+function setupObserver() {
+  let currentOpenDetail = null;
+  let currentOpenButton = null;
+
+  // Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && currentOpenDetail && entry.target === currentOpenDetail) {
+        currentOpenDetail.classList.remove('show');
+        currentOpenDetail.style.maxHeight = null;
+
+        if (currentOpenButton) {
+          currentOpenButton.textContent = 'Read More';
+        }
+
+        currentOpenDetail = null;
+        currentOpenButton = null;
+      }
+    });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.project-detail').forEach(section => {
-    section.classList.remove('show');
-    section.style.maxHeight = null;
+    observer.observe(section);
   });
 
-  document.querySelectorAll('.toggle-btn').forEach(button => {
-    button.textContent = 'Read More';
-  });
+  // Update your toggleProjectDetail to track currentOpenDetail/button
+  window.toggleProjectDetail = function(id, btn) {
+    const detail = document.getElementById(id);
+    const isOpen = detail.classList.contains('show');
 
-  if (!isOpen) {
-    detail.classList.add('show');
-     detail.style.maxHeight = (detail.scrollHeight + 60) + 'px';
-    btn.textContent = 'Read Less';
-     if (window.innerWidth < 768) {
-       detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
-     }
-  }
+    document.querySelectorAll('.project-detail').forEach(section => {
+      section.classList.remove('show');
+      section.style.maxHeight = null;
+    });
+
+    document.querySelectorAll('.toggle-btn').forEach(button => {
+      button.textContent = 'Read More';
+    });
+
+    if (!isOpen) {
+      detail.classList.add('show');
+      detail.style.maxHeight = (detail.scrollHeight + 60) + 'px';
+      btn.textContent = 'Read Less';
+
+      currentOpenDetail = detail;
+      currentOpenButton = btn;
+
+      if (window.innerWidth < 768) {
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      currentOpenDetail = null;
+      currentOpenButton = null;
+    }
+  };
 }
+
 
 // scrollToTop btn
 
